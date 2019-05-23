@@ -1,0 +1,45 @@
+matrix: 
+  include: 
+
+    # Build for Angular (front-end)
+    - language: node_js
+      node_js:
+        - "9"
+      dist: trusty
+      sudo: required
+
+      branches:
+        only:
+          - master
+
+      before_script:
+        - npm install -g @angular/cli
+
+      script:
+        - ng build --prod
+        - ng lint
+        - ng test
+
+    # Build for TSOA API (back-end)
+    - language: node_js
+      node_js:
+        - "10"
+      
+      install:
+        - cd functions
+        - npm uninstall typescript --no-save # ensure typscript is not installed
+        - npm uninstall tslint --no-save # ensure tslint is not installed
+        - npm install typescript -g # install typescript globally
+        - npm install tsoa -g # install TSOA globally
+        - npm install # install dependencies
+        
+      script:
+        - tsoa routes
+        - tsoa swagger
+        - cd ${TRAVIS_BUILD_DIR} # back to root 
+        - tsc -p tsconfig.api.dev-build.json
+
+      cache:
+        directories:
+          - node_modules
+		 
