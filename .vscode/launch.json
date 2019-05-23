@@ -1,0 +1,38 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug API",
+      "type": "node",
+      "request": "launch",
+      "protocol": "inspector",
+      "runtimeArgs": [
+        "--nolazy",
+        "--inspect-brk=5858"
+      ],
+      "timeout": 30000,
+      // "stopOnEntry": true,
+      "port": 5858,
+      "sourceMaps": true,
+      "preLaunchTask": "ts-dev-build",
+      "program": "${workspaceFolder}/functions/src/app.ts",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "outFiles": [
+        "${workspaceRoot}/functions/lib/**/*.js"
+      ],
+      "env": {
+        "build": "dev",
+        "portalUrl": "http://localhost:4200",
+        // "portalUrl": "https://FIREBASE_PROJECT_HERE.web.app/",
+        "firebaseDbUrl": "https://FIREBASE_PROJECT_HERE.firebaseio.com",
+        "firebaseProjectId": "FIREBASE_PROJECT_HERE",
+        "firebasePrivateKey": "-----BEGIN PRIVATE KEY-----FIREBASE_CERT_HERE...",
+        "firebaseClientEmail": "firebase-adminsdk-cdcvk@FIREBASE_PROJECT_HERE.iam.gserviceaccount.com"
+      }
+    }
+  ]
+}

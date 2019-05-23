@@ -1,0 +1,30 @@
+{
+    "editor.minimap.maxColumn": 60,
+    "peacock.affectActivityBar": true,
+    "peacock.affectStatusBar": true,
+    "peacock.affectTitleBar": false,
+    "peacock.favoriteColors": [{
+            "name": "Tennis Green",
+            "value": "#bce942"
+        },
+        {
+            "name": "Auth0 Orange",
+            "value": "#eb5424"
+        },
+        {
+            "name": "Azure Blue",
+            "value": "#007fff"
+        }
+    ],
+    "editor.maxTokenizationLineLength": 20000,
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#ccee70",
+        "activityBar.foreground": "#15202b",
+        "activityBar.inactiveForeground": "#15202b99",
+        "activityBarBadge.background": "#1898c7",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "statusBar.background": "#bce942",
+        "statusBarItem.hoverBackground": "#a9de1a",
+        "statusBar.foreground": "#15202b"
+    }
+}

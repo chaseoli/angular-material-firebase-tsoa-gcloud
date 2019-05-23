@@ -1,0 +1,31 @@
+{
+    "swagger": {
+        "info": {
+            "description": "",
+            "version": "1.0.0",
+            "title": "Name of this API here"
+        },
+        "schemes": [
+            "https"
+        ],
+        "outputDirectory": "./def",
+        "entryFile": "./src/app.ts",
+        "host": "URL_FROM_GCLOUD_APP_ENGINE_HOST.appspot.com",
+        "basePath": "/",
+        "securityDefinitions": {
+            "api_key": {
+                "description": "A google cloud api key, used to restrict access and apply quotas",
+                "type": "apiKey",
+                "name": "key",
+                "in": "query"
+            }
+        }
+    },
+    "routes": {
+        "basePath": "/",
+        "entryFile": "./src/app.ts",
+        "middleware": "express",
+        "routesDir": "./src",
+        "authenticationModule": "./src/middleware/authentication.ts"
+    }
+}
