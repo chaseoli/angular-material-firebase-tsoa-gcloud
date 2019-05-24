@@ -20,7 +20,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 # Testing 
 
-See Angular Testing docs here `https://angular.io/guide/testing`.
+See Angular Testing docs here [Angular Testing](https://angular.io/guide/testing).
 
 ## Running unit tests
 
