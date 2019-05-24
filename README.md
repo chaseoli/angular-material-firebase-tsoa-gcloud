@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/chaseoli/angular-material-firebase-tsoa-gcloud.svg?branch=master)](https://travis-ci.org/chaseoli/angular-material-firebase-tsoa-gcloud)
+[![Build Status](https://travis-ci.com/chaseoli/angular-material-firebase-tsoa-gcloud.svg?branch=master)](https://travis-ci.com/chaseoli/angular-material-firebase-tsoa-gcloud)
 
 # angular-material-firebase-tsoa-gcloud
 
