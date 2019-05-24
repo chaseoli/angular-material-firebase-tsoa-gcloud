@@ -13,7 +13,7 @@ export const environment = {
     messagingSenderId: '',
     appId: ''
   },
-  apiUrl:'',
+  apiUrl: '',
   timeout: 15
 };
 
