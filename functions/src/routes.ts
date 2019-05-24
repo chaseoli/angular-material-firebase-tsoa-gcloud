@@ -1,5 +1,6 @@
 /* tslint:disable */
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
+import { TestController } from './controller/test.controller';
 import { expressAuthentication } from './middleware/authentication';
 import * as express from 'express';
 
@@ -8,7 +9,69 @@ const models: TsoaRoute.Models = {
 const validationService = new ValidationService(models);
 
 export function RegisterRoutes(app: express.Express) {
+  app.get('/test/msg',
+    authenticateMiddleware([{ "api_key": [] }]),
+    function(request: any, response: any, next: any) {
+      const args = {
+      };
 
+      let validatedArgs: any[] = [];
+      try {
+        validatedArgs = getValidatedArgs(args, request);
+      } catch (err) {
+        return next(err);
+      }
+
+      const controller = new TestController();
+
+
+      const promise = controller.test.apply(controller, validatedArgs as any);
+      promiseHandler(controller, promise, response, next);
+    });
+
+  function authenticateMiddleware(security: TsoaRoute.Security[] = []) {
+    return (request: any, _response: any, next: any) => {
+      let responded = 0;
+      let success = false;
+
+      const succeed = function(user: any) {
+        if (!success) {
+          success = true;
+          responded++;
+          request['user'] = user;
+          next();
+        }
+      }
+
+      const fail = function(error: any) {
+        responded++;
+        if (responded == security.length && !success) {
+          error.status = 401;
+          next(error)
+        }
+      }
+
+      for (const secMethod of security) {
+        if (Object.keys(secMethod).length > 1) {
+          let promises: Promise<any>[] = [];
+
+          for (const name in secMethod) {
+            promises.push(expressAuthentication(request, name, secMethod[name]));
+          }
+
+          Promise.all(promises)
+            .then((users) => { succeed(users[0]); })
+            .catch(fail);
+        } else {
+          for (const name in secMethod) {
+            expressAuthentication(request, name, secMethod[name])
+              .then(succeed)
+              .catch(fail);
+          }
+        }
+      }
+    }
+  }
 
   function isController(object: any): object is Controller {
     return 'getHeaders' in object && 'getStatus' in object && 'setStatus' in object;
