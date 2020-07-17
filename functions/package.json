@@ -19,7 +19,7 @@
     "express-session": "^1.15.6",
     "firebase-admin": "6.3.0",
     "helmet": "^3.15.1",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.19",
     "moment": "^2.22.2",
     "tsoa": "^2.3.81"
   },
